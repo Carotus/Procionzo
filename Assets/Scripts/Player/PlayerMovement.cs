@@ -4,54 +4,147 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+[Header("Climbing")]
+    private float currentStamina;
+    public bool isClimbing;
+    public float maxStamina;
+
+    public float StaminaRegenSpeed;
+    public staminaBar staminabar;
+    public GameObject canvas;
+    public LayerMask Wall;
+    public Transform orientation;
+    public float climbSpeed = 2f;
+    public float detectionLength;
+    public float sphereCastRadius;
+    public float maxWallLookAngle;
+    private float currentWallLookAngle;
+    private RaycastHit frontWallHit;
+    public bool wallFront;
+
+[Header("Basic movement")]
     public float speed = 12f;
     public CharacterController controller;
-
-    //variabili per la gravità
     Vector3 velocity;
     public float gravity = -10f;
-
     public Transform groundCheck;
-
     public AudioSource footSteps;
-
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
     bool isGrounded;
-    //
 
     void Start()
     {
+        currentStamina = maxStamina;
+        staminabar.SetMaxStamina((float)maxStamina);
     }
+
+
+
+    private void WallCheck()
+    {
+        wallFront = Physics.SphereCast(transform.position, sphereCastRadius, orientation.forward, out frontWallHit, detectionLength, Wall);
+        currentWallLookAngle = Vector3.Angle(orientation.forward, -frontWallHit.normal);
+    }
+
+
+
+    private void StartClimbing()
+    {
+        isClimbing = true;
+    }
+
+
+
+    private void ClimbingMovement()
+    {
+        currentStamina -= Time.deltaTime;
+        staminabar.SetStamina((float)currentStamina);
+        Debug.Log("stamina: " + currentStamina);
+
+       if(Input.GetKey(KeyCode.W))
+        {
+        controller.Move(transform.up * climbSpeed * Time.deltaTime);
+        //riduzione stamina
+        }
+    }
+
+
+
+    private void StopClimbing()
+    {
+        isClimbing = false;
+    }
+
+
 
     void Update()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if(isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f;
-        }
-        //controllo movimento
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-        Vector3 move = transform.right * x + transform.forward * z;
-        controller.Move(move * speed * Time.deltaTime);
+        WallCheck();
 
-        if (x > 0 || z > 0)
+        if(wallFront && Input.GetKey(KeyCode.LeftShift) && currentWallLookAngle < maxWallLookAngle  && currentStamina > 0)
         {
-            Debug.Log("bip");
-            footSteps.enabled = true;
+            StartClimbing();
         }
         else
         {
-            Debug.Log("no bip");
-            footSteps.enabled = false;
-        }
-        //controllo gravità
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
-        
+            StopClimbing();
+        }     
     }
 
+    void FixedUpdate()
+    {
+
+        if(isClimbing == false) 
+        {
+
+            //controllo pavimento
+            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+            if(isGrounded && velocity.y < 0)
+            {
+            velocity.y = -2f;
+            }
+
+            //controllo movimento
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
+            Vector3 move = transform.right * x + transform.forward * z;
+            controller.Move(move * speed * Time.deltaTime);
+
+            //controllo suoni movimento
+            if (x > 0 || z > 0)
+            {
+            //Debug.Log("bip");
+            footSteps.enabled = true;
+            }
+            else
+            {
+            //Debug.Log("no bip");
+            footSteps.enabled = false;
+            }
+
+            //controllo gravità
+            velocity.y += gravity * Time.deltaTime;
+            controller.Move(velocity * Time.deltaTime);
+
+            if(currentStamina < maxStamina && isGrounded)
+            {
+                currentStamina += Time.deltaTime * StaminaRegenSpeed;
+                staminabar.SetStamina((float)currentStamina);
+            }
+
+        }
+        else if(isClimbing == true)
+        {
+            ClimbingMovement();
+            Debug.Log("Climbing");
+        }
+
+    }
 }
+
+
+
