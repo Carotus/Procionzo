@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void WallCheck()
     {
-        wallFront = Physics.SphereCast(transform.position, sphereCastRadius, orientation.forward, out frontWallHit, detectionLength, Wall);
+        wallFront = Physics.SphereCast(groundCheck.position, sphereCastRadius, orientation.forward, out frontWallHit, detectionLength, Wall);
         currentWallLookAngle = Vector3.Angle(orientation.forward, -frontWallHit.normal);
     }
 

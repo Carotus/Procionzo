@@ -908,7 +908,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d93ac7a87f4695b4f9d8b1f8c93687b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentStamina: 0
   isClimbing: 0
   maxStamina: 40
   StaminaRegenSpeed: 2
@@ -919,8 +918,8 @@ MonoBehaviour:
     m_Bits: 128
   orientation: {fileID: 837237483}
   climbSpeed: 12
-  detectionLength: 0.1
-  sphereCastRadius: 1
+  detectionLength: 1
+  sphereCastRadius: 0.5
   maxWallLookAngle: 60
   wallFront: 0
   speed: 12
