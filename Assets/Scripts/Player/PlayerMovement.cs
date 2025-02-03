@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource footSteps;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
-    bool isGrounded;
+    public bool isGrounded;
 
     void Start()
     {
