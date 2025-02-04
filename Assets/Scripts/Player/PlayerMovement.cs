@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
 
-[Header("Climbing")]
+[Header("Stamina & climb")]
     private float currentStamina;
     public bool isClimbing;
     public float maxStamina;
-
     public float StaminaRegenSpeed;
-    public staminaBar staminabar;
-    public GameObject canvas;
     public LayerMask Wall;
     public Transform orientation;
     public float climbSpeed = 2f;
@@ -23,7 +22,16 @@ public class PlayerMovement : MonoBehaviour
     private RaycastHit frontWallHit;
     public bool wallFront;
 
-[Header("Basic movement")]
+    [Header("HUD")]
+    public staminaBar staminabar;
+    public GameObject canvas;
+    public TextMeshProUGUI staminaText;
+
+    
+    
+
+
+    [Header("Basic movement")]
     public float speed = 12f;
     public CharacterController controller;
     Vector3 velocity;
@@ -81,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        UpdateStamina();
 
         WallCheck();
 
@@ -142,7 +151,14 @@ public class PlayerMovement : MonoBehaviour
             ClimbingMovement();
             Debug.Log("Climbing");
         }
+        }
 
+
+
+    public void UpdateStamina()
+    {
+        int HUDStamina = Mathf.FloorToInt(currentStamina);
+        staminaText.text = HUDStamina.ToString();
     }
 }
 

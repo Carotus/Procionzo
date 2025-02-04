@@ -13,6 +13,8 @@ public class PickupEat : MonoBehaviour
 
     public bool canEat;
 
+    private bool isHoldingObject;
+
     public float throwForce = 500f; 
     public float pickUpRange = 5f; 
     public GameObject heldObj; 
@@ -34,13 +36,11 @@ public class PickupEat : MonoBehaviour
         {
             if (heldObj == null) 
             {
-                //perform raycast to check if player is looking at object within pickuprange
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, pickUpRange))
                 {
                     if (hit.transform.gameObject.tag == "CanPickUp")
                     {
-                        //pass in object hit into the PickUpObject function
                         PickUpObject(hit.transform.gameObject);
                     }
                 }
@@ -49,7 +49,7 @@ public class PickupEat : MonoBehaviour
             {
                 if(canDrop == true)
                 {
-                    StopClipping(); //prevents object from clipping through walls
+                    StopClipping();
                     DropObject();
                 }
             }
@@ -65,14 +65,21 @@ public class PickupEat : MonoBehaviour
 
         }
 
-        if(pm.isGrounded == true && pm.isClimbing == false && heldObj != null)
+        if(pm.isGrounded == true && pm.isClimbing == false && isHoldingObject)
         {
             canEat = true;
+        }
+        else 
+        {
+            canEat = false;
         }
         
         Eat();
         
     }
+
+
+
     void PickUpObject(GameObject pickUpObj)
     {
         if (pickUpObj.GetComponent<Rigidbody>()) 
@@ -84,25 +91,32 @@ public class PickupEat : MonoBehaviour
             heldObjRb.transform.parent = holdPos.transform; //parent object to holdposition
             heldObj.layer = LayerNumber; //change the object layer to the holdLayer
             Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), true);
+            isHoldingObject = true;
         }
     }
     void DropObject()
     {
-        //re-enable collision with player
         Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
-        heldObj.layer = 0; //object assigned back to default layer
+        heldObj.layer = 0; 
         heldObjRb.isKinematic = false;
-        heldObj.transform.parent = null; //unparent object
-        heldObj = null; //undefine game object
+        heldObj.transform.parent = null; 
+        heldObj = null; 
+        isHoldingObject = false;
     }
+
+
+
+
     void MoveObject()
     {
-        //keep object position the same as the holdPosition position
         heldObj.transform.position = holdPos.transform.position;
     }
+
+
+
     void ThrowObject()
     {
-        //same as drop function, but add force to object before undefining it
+
         Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), false);
         heldObj.layer = 0;
         heldObjRb.isKinematic = false;
@@ -110,19 +124,20 @@ public class PickupEat : MonoBehaviour
         heldObjRb.AddForce(transform.forward * throwForce);
         heldObj = null;
     }
+
+
+    
     void StopClipping() //function only called when dropping/throwing
     {
-        var clipRange = Vector3.Distance(heldObj.transform.position, transform.position); //distance from holdPos to the camera
-        //have to use RaycastAll as object blocks raycast in center screen
-        //RaycastAll returns array of all colliders hit within the cliprange
+        var clipRange = Vector3.Distance(heldObj.transform.position, transform.position); 
+        
         RaycastHit[] hits;
         hits = Physics.RaycastAll(transform.position, transform.TransformDirection(Vector3.forward), clipRange);
-        //if the array length is greater than 1, meaning it has hit more than just the object we are carrying
+       
         if (hits.Length > 1)
         {
-            //change object position to camera position 
-            heldObj.transform.position = transform.position + new Vector3(0f, -0.5f, 0f); //offset slightly downward to stop object dropping above player 
-            //if your player is small, change the -0.5f to a smaller number (in magnitude) ie: -0.1f
+
+            heldObj.transform.position = transform.position + new Vector3(0f, -0.5f, 0f);
         }
     }
 
@@ -140,6 +155,8 @@ public class PickupEat : MonoBehaviour
                 }
                 else if(foodScript.foodHP <= 0)
                 {
+                    isHoldingObject = false;
+                    pm.UpdateStamina();
                     canEat = false;
                     pm.maxStamina += foodScript.staminaIncrease;
                     Destroy(heldObj);
