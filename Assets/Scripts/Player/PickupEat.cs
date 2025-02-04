@@ -11,30 +11,28 @@ public class PickupEat : MonoBehaviour
 
     public Transform holdPos;
 
-    public float throwForce = 500f; //force at which the object is thrown at
-    public float pickUpRange = 5f; //how far the player can pickup the object from
-    public GameObject heldObj; //object which we pick up
-    private Rigidbody heldObjRb; //rigidbody of object we pick up
-    private bool canDrop = true; //this is needed so we don't throw/drop object when rotating the object
-    private int LayerNumber; //layer index
+    public bool canEat;
 
-    //Reference to script which includes mouse movement of player (looking around)
-    //we want to disable the player looking around when rotating the object
-    //example below 
-    //MouseLookScript mouseLookScript;
+    public float throwForce = 500f; 
+    public float pickUpRange = 5f; 
+    public GameObject heldObj; 
+    private Rigidbody heldObjRb;
+    private bool canDrop = true; 
+    private int LayerNumber; 
+
     void Start()
     {
-        LayerNumber = LayerMask.NameToLayer("HoldLayer"); //if your holdLayer is named differently make sure to change this ""
+        LayerNumber = LayerMask.NameToLayer("HoldLayer"); 
 
-        //mouseLookScript = player.GetComponent<MouseLookScript>();
+        
     }
     void Update()
     {
-        Eat();
+        
         
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (heldObj == null) //if currently not holding anything
+            if (heldObj == null) 
             {
                 //perform raycast to check if player is looking at object within pickuprange
                 RaycastHit hit;
@@ -67,6 +65,12 @@ public class PickupEat : MonoBehaviour
 
         }
 
+        if(pm.isGrounded == true && pm.isClimbing == false && heldObj != null)
+        {
+            canEat = true;
+        }
+        
+        Eat();
         
     }
     void PickUpObject(GameObject pickUpObj)
@@ -124,21 +128,22 @@ public class PickupEat : MonoBehaviour
 
     void Eat()
     {
-        if(pm.isGrounded == true && pm.isClimbing == false && heldObj != null)
+        if(canEat == true)
         {
-            if(Input.GetButtonDown("Eat"))
+            if(Input.GetButton("Eat"))
             {
                 Debug.Log("Eating");
                 if(foodScript.foodHP > 0)
                 {
-                foodScript.foodHP -= Time.deltaTime;
-                Debug.Log("foodHP: " + foodScript.foodHP);
+                    foodScript.foodHP -= Time.deltaTime;
+                    Debug.Log("foodHP: " + foodScript.foodHP);
                 }
                 else if(foodScript.foodHP <= 0)
                 {
-                pm.maxStamina += foodScript.staminaIncrease;
-                Destroy(heldObj);
-                heldObj = null;
+                    canEat = false;
+                    pm.maxStamina += foodScript.staminaIncrease;
+                    Destroy(heldObj);
+                    heldObj = null;
                 }
             }
             
