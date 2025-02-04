@@ -160,6 +160,11 @@ public class PlayerMovement : MonoBehaviour
         int HUDStamina = Mathf.FloorToInt(currentStamina);
         staminaText.text = HUDStamina.ToString();
     }
+
+    public void StamMaxIncrease()
+    {
+        staminabar.SetMaxStamina((float)maxStamina);
+    }
 }
 
 
