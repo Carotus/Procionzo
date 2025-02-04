@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
 [Header("Stamina & climb")]
-    private float currentStamina;
+    public float currentStamina;
     public bool isClimbing;
     public float maxStamina;
     public float StaminaRegenSpeed;

@@ -159,6 +159,7 @@ public class PickupEat : MonoBehaviour
                     pm.UpdateStamina();
                     canEat = false;
                     pm.maxStamina += foodScript.staminaIncrease;
+                    pm.currentStamina = pm.maxStamina;
                     Destroy(heldObj);
                     heldObj = null;
                 }
