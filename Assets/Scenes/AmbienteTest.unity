@@ -1063,7 +1063,7 @@ GameObject:
   - component: {fileID: 389372806}
   - component: {fileID: 389372805}
   - component: {fileID: 389372804}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: TABLE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
