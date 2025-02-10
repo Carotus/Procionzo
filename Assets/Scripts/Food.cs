@@ -9,6 +9,8 @@ public class Food : MonoBehaviour
 
     public bool movable;
 
+    public float Sat;
+
 
 
     void Start()

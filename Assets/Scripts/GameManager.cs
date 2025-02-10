@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameOverLogic : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
 
     public GameObject gameOverUI;
