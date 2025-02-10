@@ -165,6 +165,14 @@ public class PlayerMovement : MonoBehaviour
     {
         staminabar.SetMaxStamina((float)maxStamina);
     }
+
+    void Dead()
+    {
+        if (currentStamina <= 0)
+        {
+            //call game over logic
+        }
+    }
 }
 
 

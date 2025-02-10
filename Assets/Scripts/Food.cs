@@ -7,6 +7,8 @@ public class Food : MonoBehaviour
 
     public float foodHP;
 
+    public bool movable;
+
 
 
     void Start()
