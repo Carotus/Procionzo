@@ -11,6 +11,8 @@ public class PickupEat : MonoBehaviour
 
     public Transform holdPos;
 
+    public GameManager gm;
+
     public bool canEat;
 
     private bool isHoldingObject;
@@ -25,7 +27,7 @@ public class PickupEat : MonoBehaviour
     void Start()
     {
         LayerNumber = LayerMask.NameToLayer("HoldLayer"); 
-
+        gm = FindAnyObjectByType<GameManager>();
         
     }
     void Update()
@@ -147,7 +149,10 @@ public class PickupEat : MonoBehaviour
         {
             if(Input.GetButton("Eat"))
             {
+                pm.isEating = true;
+
                 Debug.Log("Eating");
+
                 if(foodScript.foodHP > 0)
                 {
                     foodScript.foodHP -= Time.deltaTime;
@@ -155,15 +160,24 @@ public class PickupEat : MonoBehaviour
                 }
                 else if(foodScript.foodHP <= 0)
                 {
+                    
                     isHoldingObject = false;
                     pm.UpdateStamina();
                     canEat = false;
                     pm.maxStamina += foodScript.staminaIncrease;
                     pm.currentStamina = pm.maxStamina;
+                    pm.SatietyTimer = foodScript.Sat;
+                    gm.CurrentScore += 1;
                     pm.StamMaxIncrease();
+                    pm.isEating = false;
                     Destroy(heldObj);
                     heldObj = null;
-                }
+                } 
+                
+            }
+            else 
+            {
+                pm.isEating = false;
             }
             
             

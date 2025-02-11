@@ -10,6 +10,12 @@ public class PlayerMovement : MonoBehaviour
 [Header("Stamina & climb")]
     public float currentStamina;
     public bool isClimbing;
+
+    public bool isEating;
+
+    public float SatietyTimer;
+
+    public float staminaDepMult;
     public float maxStamina;
     public float StaminaRegenSpeed;
     public LayerMask Wall;
@@ -27,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject canvas;
     public TextMeshProUGUI staminaText;
 
-    
+    private GameManager gm;
     
 
 
@@ -43,7 +49,8 @@ public class PlayerMovement : MonoBehaviour
     public bool isGrounded;
 
     void Start()
-    {
+    {   
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         currentStamina = maxStamina;
         staminabar.SetMaxStamina((float)maxStamina);
     }
@@ -89,6 +96,19 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+
+        if (SatietyTimer > 0 || isEating)
+        {
+            SatietyTimer -= Time.deltaTime;
+        }
+        else if(SatietyTimer <= 0)
+        {
+            currentStamina -= staminaDepMult * Time.deltaTime;
+            staminabar.SetStamina((float)currentStamina);
+        }
+        
+        Dead();
+        
         UpdateStamina();
 
         WallCheck();
@@ -139,11 +159,11 @@ public class PlayerMovement : MonoBehaviour
             velocity.y += gravity * Time.deltaTime;
             controller.Move(velocity * Time.deltaTime);
 
-            if(currentStamina < maxStamina && isGrounded)
-            {
-                currentStamina += Time.deltaTime * StaminaRegenSpeed;
-                staminabar.SetStamina((float)currentStamina);
-            }
+            //if(currentStamina < maxStamina && isGrounded)
+            //{
+                //currentStamina += Time.deltaTime * StaminaRegenSpeed;
+                //staminabar.SetStamina((float)currentStamina);
+            //}
 
         }
         else if(isClimbing == true)
@@ -164,6 +184,14 @@ public class PlayerMovement : MonoBehaviour
     public void StamMaxIncrease()
     {
         staminabar.SetMaxStamina((float)maxStamina);
+    }
+
+    void Dead()
+    {
+        if (currentStamina <= 0)
+        {
+           gm.LoseScreen();
+        }
     }
 }
 
