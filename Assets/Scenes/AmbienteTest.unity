@@ -241,6 +241,7 @@ GameObject:
   - component: {fileID: 118926263}
   - component: {fileID: 118926262}
   - component: {fileID: 118926267}
+  - component: {fileID: 118926268}
   m_Layer: 0
   m_Name: Nemico
   m_TagString: Untagged
@@ -497,6 +498,31 @@ MonoBehaviour:
           m_Value1: 94511062416616615
         Name: Wait Timer
         m_Value: 5
+--- !u!114 &118926268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 118926261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8a2c78d820cc3d48ba9039c0510cb85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRef: {fileID: 0}
+  EnemyGraph: {fileID: 118926267}
+  viewRadius: 10
+  viewAngle: 100
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 256
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 640
+  Spotted: 0
+  IsInVision: 0
+  gameOverTimer: 3
 --- !u!1 &179096938
 GameObject:
   m_ObjectHideFlags: 0
