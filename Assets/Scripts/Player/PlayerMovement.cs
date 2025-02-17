@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
     {
         currentStamina -= Time.deltaTime;
         staminabar.SetStamina((float)currentStamina);
-        Debug.Log("stamina: " + currentStamina);
+        //Debug.Log("stamina: " + currentStamina);
 
        if(Input.GetKey(KeyCode.W))
         {

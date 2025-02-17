@@ -890,6 +890,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverUI: {fileID: 6826509386313404429}
   pauseUI: {fileID: 8063484872847234754}
+  CurrentScore: 0
+  NeededScore: 0
+  TotalScore: 0
 --- !u!1 &3180721120271822976
 GameObject:
   m_ObjectHideFlags: 0
@@ -1310,7 +1313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 0
   LSS: {fileID: 0}
-  thisPanel: {fileID: 0}
+  thisPanel: {fileID: 3881524143955425409}
 --- !u!1 &3881524143955425409
 GameObject:
   m_ObjectHideFlags: 0
@@ -1687,7 +1690,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 0
   LSS: {fileID: 0}
-  thisPanel: {fileID: 0}
+  thisPanel: {fileID: 3881524143955425409}
 --- !u!1 &6826509386313404429
 GameObject:
   m_ObjectHideFlags: 0
