@@ -8,8 +8,6 @@ public class EnemyFOV : MonoBehaviour
 
     public BehaviorGraphAgent EnemyGraph;
 
-  // public Blackboard enemyBoard;
-
     public float viewRadius;
 
 [Range(0, 360)]
@@ -32,6 +30,8 @@ public class EnemyFOV : MonoBehaviour
         gameOverTimerMax = gameOverTimer;
         playerRef = GameObject.Find("Player");
         StartCoroutine(FOVRoutine());
+
+        
     }
 
     private IEnumerator FOVRoutine()
@@ -61,6 +61,8 @@ public class EnemyFOV : MonoBehaviour
 
                 if (!Physics.Raycast(transform.position, dirToTarget, distToTarget, obstacleMask))  //raycast verso il player limitato da distanza e layermask
                 {
+                    
+                    //EnemyGraph.SetVariableValue<Tvalue>( "IsSeen" , Tvalue true);
                     Spotted = true;
                     IsInVision = true;
                 }
@@ -84,12 +86,6 @@ public class EnemyFOV : MonoBehaviour
 
     public void Update()
     {
-        // var enemyBoard = EnemyGraph.GetBlackboard(); //non va una sega
-          //  if (enemyBoard != null)
-         //   {
-          //      IsInVision = enemyBoard.GetValue<bool>("IsSeen");
-          //  }
-
         SpottingPlayer();
     }
 
@@ -117,4 +113,30 @@ public class EnemyFOV : MonoBehaviour
             Debug.Log(gameOverTimer.ToString());
         }
     }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, viewRadius);
+
+        Vector3 viewAngleA = DirFromAngle(-viewAngle / 2, false);
+        Vector3 viewAngleB = DirFromAngle(viewAngle / 2, false);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawLine(transform.position, transform.position + viewAngleA * viewRadius);
+        Gizmos.DrawLine(transform.position, transform.position + viewAngleB * viewRadius);
+    }
+
+    public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
+    {
+        if (!angleIsGlobal)
+        {
+            angleInDegrees += transform.eulerAngles.y;
+        }
+        return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
+    }
+
+    
+
+    
 }
