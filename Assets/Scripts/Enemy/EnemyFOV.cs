@@ -49,19 +49,22 @@ public class EnemyFOV : MonoBehaviour
     void FieldOfViewCheck()
     {
         Collider[] rangeCheck = Physics.OverlapSphere (transform.position, viewRadius, targetMask);
+        //Debug.Log("rangeCheck length: " + rangeCheck.Length);
 
        if (rangeCheck.Length != 0)
        {
+            //Debug.Log("rangeCheck not 0");
             Transform target = rangeCheck[0].transform;
             Vector3 dirToTarget = (target.position - transform.position).normalized;
 
-            if(Vector3.Angle(transform.position, dirToTarget) < viewAngle / 2.0f)
+            if(Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2.0f)
             {
+                //Debug.Log("vector less than view angle");
                 float distToTarget = Vector3.Distance(transform.position, target.position);
 
                 if (!Physics.Raycast(transform.position, dirToTarget, distToTarget, obstacleMask))  //raycast verso il player limitato da distanza e layermask
                 {
-                    
+                    Debug.Log("Player Spotted");
                     EnemyGraph.SetVariableValue( "Spotted" , true);
                     EnemyGraph.SetVariableValue( "InVision" , true);
                     Spotted = true;
@@ -69,17 +72,23 @@ public class EnemyFOV : MonoBehaviour
                 }
                 else
                 {
+                    EnemyGraph.SetVariableValue( "Spotted" , false);
+                    EnemyGraph.SetVariableValue( "InVision" , false);
                     Spotted = false;
                     IsInVision = false;
                 }
             }
             else 
             {
+                EnemyGraph.SetVariableValue( "Spotted" , false);
+                EnemyGraph.SetVariableValue( "InVision" , false);
                 IsInVision = false;
             }
        }
        else if (IsInVision)
         {
+            EnemyGraph.SetVariableValue( "Spotted" , false);
+            EnemyGraph.SetVariableValue( "InVision" , false);
             IsInVision = false;
         }
 
