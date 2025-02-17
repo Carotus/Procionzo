@@ -21,6 +21,8 @@ public class PickupEat : MonoBehaviour
     public float pickUpRange = 5f; 
     public GameObject heldObj; 
     private Rigidbody heldObjRb;
+
+    private float currentSpeed; 
     private bool canDrop = true; 
     private int LayerNumber; 
 
@@ -28,6 +30,7 @@ public class PickupEat : MonoBehaviour
     {
         LayerNumber = LayerMask.NameToLayer("HoldLayer"); 
         gm = FindAnyObjectByType<GameManager>();
+        currentSpeed = pm.speed;
         
     }
     void Update()
@@ -59,10 +62,15 @@ public class PickupEat : MonoBehaviour
         if (heldObj != null) //if player is holding object
         {
             MoveObject(); //keep object position at holdPos
-            if (Input.GetKeyDown(KeyCode.Mouse1) && canDrop == true) 
+            if (Input.GetKeyDown(KeyCode.Mouse1) && canDrop == true && foodScript.heavy == false) 
             {
                 StopClipping();
                 ThrowObject();
+            }
+
+            if(foodScript.heavy)
+            {
+                pm.speed = 0f;
             }
 
         }
@@ -104,6 +112,7 @@ public class PickupEat : MonoBehaviour
         heldObj.transform.parent = null; 
         heldObj = null; 
         isHoldingObject = false;
+        pm.speed = currentSpeed;
     }
 
 
@@ -125,6 +134,7 @@ public class PickupEat : MonoBehaviour
         heldObj.transform.parent = null;
         heldObjRb.AddForce(transform.forward * throwForce);
         heldObj = null;
+        pm.speed = currentSpeed;
     }
 
 
@@ -150,6 +160,7 @@ public class PickupEat : MonoBehaviour
             if(Input.GetButton("Eat"))
             {
                 pm.isEating = true;
+                
 
                 Debug.Log("Eating");
 
@@ -162,6 +173,7 @@ public class PickupEat : MonoBehaviour
                 {
                     
                     isHoldingObject = false;
+                    pm.speed = currentSpeed;
                     pm.UpdateStamina();
                     canEat = false;
                     pm.maxStamina += foodScript.staminaIncrease;
@@ -172,6 +184,7 @@ public class PickupEat : MonoBehaviour
                     pm.isEating = false;
                     Destroy(heldObj);
                     heldObj = null;
+                    
                 } 
                 
             }

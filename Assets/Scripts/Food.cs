@@ -7,7 +7,7 @@ public class Food : MonoBehaviour
 
     public float foodHP;
 
-    public bool movable;
+    public bool heavy;
 
     public float Sat;
 

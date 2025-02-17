@@ -7,9 +7,23 @@ public class LevelManager : MonoBehaviour
 
     public int level;
 
-    public GameObject LSS;
+    public GameObject LSS = null;
 
-    public GameObject thisPanel;
+    public GameObject thisPanel = null;
+
+    void Awake()
+    {
+        if (LSS == null)
+        {
+            LSS = GameObject.Find("PlayerCanvas");
+        }
+
+        if (thisPanel == null)
+        {
+            thisPanel = GameObject.Find("PauseMenu");
+        }
+
+    }
 
     public void NextLevel()
     {

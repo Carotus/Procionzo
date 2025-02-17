@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6288457616487898751}
   - component: {fileID: 3354946630300778492}
   - component: {fileID: 2627076838187851040}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6746684601646460656}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hold pos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 5342762300362558916}
   - component: {fileID: 7336616377918808833}
   - component: {fileID: 7141829550163577385}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: StaminaBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 1157989234992915752}
   - component: {fileID: 3599172709560735063}
   - component: {fileID: 1603083556028217354}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -499,7 +499,7 @@ GameObject:
   - component: {fileID: 7119678743625847329}
   - component: {fileID: 3845348194320537063}
   - component: {fileID: 4289397260177111967}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -639,6 +639,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentStamina: 0
   isClimbing: 0
+  climbingStaminaReduction: 1
   isEating: 0
   SatietyTimer: 5
   staminaDepMult: 0.25
@@ -678,8 +679,8 @@ GameObject:
   - component: {fileID: 7368575337463630794}
   - component: {fileID: 3856543528648397300}
   - component: {fileID: 8709174238165225497}
-  m_Layer: 0
-  m_Name: Canvas
+  m_Layer: 8
+  m_Name: PlayerCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -779,7 +780,7 @@ GameObject:
   - component: {fileID: 3249554866648320359}
   - component: {fileID: 3573803812992493689}
   - component: {fileID: 8812859584310493958}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -852,7 +853,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8258737747083685602}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -885,7 +886,7 @@ GameObject:
   - component: {fileID: 192471293790371476}
   - component: {fileID: 8992624687674459183}
   - component: {fileID: 8580841512419353740}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: HoldCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1013,7 +1014,7 @@ GameObject:
   - component: {fileID: 7980116344716066722}
   - component: {fileID: 8459996007183473491}
   - component: {fileID: 4594142925761589011}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: StaminaNumber
   m_TagString: Untagged
   m_Icon: {fileID: 0}

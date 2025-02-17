@@ -62,7 +62,8 @@ public class EnemyFOV : MonoBehaviour
                 if (!Physics.Raycast(transform.position, dirToTarget, distToTarget, obstacleMask))  //raycast verso il player limitato da distanza e layermask
                 {
                     
-                    //EnemyGraph.SetVariableValue<Tvalue>( "IsSeen" , Tvalue true);
+                    EnemyGraph.SetVariableValue( "Spotted" , true);
+                    EnemyGraph.SetVariableValue( "InVision" , true);
                     Spotted = true;
                     IsInVision = true;
                 }

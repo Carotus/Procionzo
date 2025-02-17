@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
     public float currentStamina;
     public bool isClimbing;
 
+    public float climbingStaminaReduction = 1f;
+
     public bool isEating;
 
     public float SatietyTimer;
@@ -74,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ClimbingMovement()
     {
-        currentStamina -= Time.deltaTime;
+        currentStamina -= climbingStaminaReduction * Time.deltaTime;
         staminabar.SetStamina((float)currentStamina);
         //Debug.Log("stamina: " + currentStamina);
 
