@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/AmbienteTest.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/LvTutorial.unity
+    path: Assets/Scenes/LvTutorialF.unity
     guid: fbfa514691719bf47813e2378297a688
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 99f9c9493070a9d4c979a8fec7c5a8d3, type: 2}
