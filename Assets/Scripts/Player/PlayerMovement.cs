@@ -45,10 +45,19 @@ public class PlayerMovement : MonoBehaviour
     Vector3 velocity;
     public float gravity = -10f;
     public Transform groundCheck;
-    public AudioSource footSteps;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
     public bool isGrounded;
+
+    [Header("Audio")]
+
+    public AudioSource audioSource;
+
+    public bool isClimbingSoundPlaying;
+
+    public bool isMovingSoundPlaying;
+    public AudioClip moveSound;
+    public AudioClip climbSound;
 
     void Start()
     {   
@@ -70,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
     private void StartClimbing()
     {
         isClimbing = true;
+
     }
 
 
@@ -83,7 +93,12 @@ public class PlayerMovement : MonoBehaviour
        if(Input.GetKey(KeyCode.W))
         {
         controller.Move(transform.up * climbSpeed * Time.deltaTime);
+        PlaySoundClimb();
         //riduzione stamina
+        }
+        else 
+        {
+            StopSoundClimb();
         }
     }
 
@@ -92,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
     private void StopClimbing()
     {
         isClimbing = false;
+        isClimbingSoundPlaying = false;
     }
 
 
@@ -118,10 +134,12 @@ public class PlayerMovement : MonoBehaviour
         if(wallFront && Input.GetKey(KeyCode.LeftShift) && currentWallLookAngle < maxWallLookAngle  && currentStamina > 0)
         {
             StartClimbing();
+            
         }
         else
         {
             StopClimbing();
+            //StopSoundClimb();
         }     
     }
 
@@ -144,18 +162,16 @@ public class PlayerMovement : MonoBehaviour
             float z = Input.GetAxis("Vertical");
             Vector3 move = transform.right * x + transform.forward * z;
             controller.Move(move * speed * Time.deltaTime);
-
-            //controllo suoni movimento
-            if (x > 0 || z > 0)
+            
+            if(isClimbing == false && x != 0 || z != 0)
             {
-            //Debug.Log("bip");
-            footSteps.enabled = true;
+                PlaySoundMove();
             }
             else
             {
-            //Debug.Log("no bip");
-            footSteps.enabled = false;
+                StopSoundMove();
             }
+
 
             //controllo gravità
             velocity.y += gravity * Time.deltaTime;
@@ -194,6 +210,43 @@ public class PlayerMovement : MonoBehaviour
         {
            gm.LoseScreen();
         }
+    }
+
+
+    void PlaySoundMove()
+    {
+        if(isMovingSoundPlaying == false)
+        {
+            audioSource.clip = moveSound;
+            audioSource.loop = true;
+            audioSource.Play();
+            isMovingSoundPlaying = true;
+        }
+    }
+
+    void StopSoundMove()
+    {
+        isMovingSoundPlaying = false;
+        audioSource.loop = false;
+        audioSource.Stop();
+    }
+
+    void PlaySoundClimb()
+    {
+        if(isClimbingSoundPlaying == false)
+        {
+            audioSource.clip = climbSound;
+            audioSource.loop = true;
+            audioSource.Play();
+            isClimbingSoundPlaying = true;
+        }
+    }
+
+    void StopSoundClimb()
+    {
+        isClimbingSoundPlaying = false;
+        audioSource.loop = false;
+        audioSource.Stop();
     }
 }
 

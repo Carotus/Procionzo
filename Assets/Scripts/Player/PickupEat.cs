@@ -26,6 +26,13 @@ public class PickupEat : MonoBehaviour
     private bool canDrop = true; 
     private int LayerNumber; 
 
+
+[Header("Audio")]
+    public AudioSource audioSource;
+
+    public bool isPlayingEat;
+    public AudioClip eatingSound, pickupSound, dropSound, throwSound;
+
     void Start()
     {
         LayerNumber = LayerMask.NameToLayer("HoldLayer"); 
@@ -112,6 +119,7 @@ public class PickupEat : MonoBehaviour
         heldObj.transform.parent = null; 
         heldObj = null; 
         isHoldingObject = false;
+        StopEatSound();
         pm.speed = currentSpeed;
     }
 
@@ -133,6 +141,7 @@ public class PickupEat : MonoBehaviour
         heldObjRb.isKinematic = false;
         heldObj.transform.parent = null;
         heldObjRb.AddForce(transform.forward * throwForce);
+        StopEatSound();
         heldObj = null;
         pm.speed = currentSpeed;
     }
@@ -159,6 +168,9 @@ public class PickupEat : MonoBehaviour
         {
             if(Input.GetButton("Eat"))
             {
+                
+                PlayEatSound();
+
                 pm.isEating = true;
                 
 
@@ -182,19 +194,40 @@ public class PickupEat : MonoBehaviour
                     gm.CurrentScore += 1;
                     pm.StamMaxIncrease();
                     pm.isEating = false;
+                    StopEatSound();
                     Destroy(heldObj);
                     heldObj = null;
+                    
                     
                 } 
                 
             }
             else 
             {
+                StopEatSound();
                 pm.isEating = false;
             }
             
             
         }
+    }
+
+    public void PlayEatSound()
+    {
+        if(isPlayingEat == false)
+        {
+            audioSource.clip = eatingSound;
+            audioSource.loop = true;
+            audioSource.Play();
+            isPlayingEat = true;
+        }
+    }
+
+    public void StopEatSound()
+    {
+        isPlayingEat = false;
+        audioSource.Stop();
+        audioSource.loop = false;
     }
 
 }

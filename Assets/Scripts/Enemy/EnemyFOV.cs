@@ -25,6 +25,11 @@ public class EnemyFOV : MonoBehaviour
 
     private float gameOverTimerMax;
 
+    public AudioSource audioSource;
+
+    public AudioClip spottedSound;
+    public bool PlaySpotted;
+
     public void Start()
     {
         gameOverTimerMax = gameOverTimer;
@@ -64,6 +69,7 @@ public class EnemyFOV : MonoBehaviour
 
                 if (!Physics.Raycast(transform.position, dirToTarget, distToTarget, obstacleMask))  //raycast verso il player limitato da distanza e layermask
                 {
+                    PlaySpottedSound();
                     Debug.Log("Player Spotted");
                     EnemyGraph.SetVariableValue( "Spotted" , true);
                     EnemyGraph.SetVariableValue( "InVision" , true);
@@ -72,6 +78,7 @@ public class EnemyFOV : MonoBehaviour
                 }
                 else
                 {
+                    PlaySpotted = false;
                     EnemyGraph.SetVariableValue( "Spotted" , false);
                     EnemyGraph.SetVariableValue( "InVision" , false);
                     Spotted = false;
@@ -80,6 +87,7 @@ public class EnemyFOV : MonoBehaviour
             }
             else 
             {
+                PlaySpotted = false;
                 EnemyGraph.SetVariableValue( "Spotted" , false);
                 EnemyGraph.SetVariableValue( "InVision" , false);
                 IsInVision = false;
@@ -87,6 +95,7 @@ public class EnemyFOV : MonoBehaviour
        }
        else if (IsInVision)
         {
+            PlaySpotted = false;
             EnemyGraph.SetVariableValue( "Spotted" , false);
             EnemyGraph.SetVariableValue( "InVision" , false);
             IsInVision = false;
@@ -146,7 +155,14 @@ public class EnemyFOV : MonoBehaviour
         return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(angleInDegrees * Mathf.Deg2Rad));
     }
 
-    
+    void PlaySpottedSound()
+    {
+        if(PlaySpotted == false)
+        {
+        audioSource.PlayOneShot(spottedSound);
+        PlaySpotted = true;
+        }
+    }
 
     
 }
