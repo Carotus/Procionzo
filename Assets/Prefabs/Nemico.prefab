@@ -383,7 +383,7 @@ MonoBehaviour:
           m_Value0: 2360837956365299415
           m_Value1: 8301646412886576597
         Name: Footsteps
-        m_Value: {fileID: 8300000, guid: 17d411bb2997b8744a3925c8e51e402e, type: 3}
+        m_Value: {fileID: 8300000, guid: 7e5690458a382af499af90c2b9b81b2c, type: 3}
 --- !u!114 &5251581001123439521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -411,7 +411,10 @@ MonoBehaviour:
   gameOverTimer: 3
   audioSource: {fileID: 8723851827716949982}
   spottedSound: {fileID: 8300000, guid: ba14b0f7a29cc6d42b5112b3d61161ce, type: 3}
+  walkSound: {fileID: 8300000, guid: 17d411bb2997b8744a3925c8e51e402e, type: 3}
   PlaySpotted: 0
+  isWalkingSound: 0
+  previousPosition: {x: 0, y: 0, z: 0}
 --- !u!82 &8723851827716949982
 AudioSource:
   m_ObjectHideFlags: 0

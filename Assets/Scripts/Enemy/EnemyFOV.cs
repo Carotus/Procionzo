@@ -25,13 +25,21 @@ public class EnemyFOV : MonoBehaviour
 
     private float gameOverTimerMax;
 
+
+    [Header("Audio")]
+
     public AudioSource audioSource;
 
-    public AudioClip spottedSound;
+    public AudioClip spottedSound, walkSound;
     public bool PlaySpotted;
+
+    public bool isWalkingSound;
+
+    public Vector3 previousPosition;
 
     public void Start()
     {
+        previousPosition = transform.position;
         gameOverTimerMax = gameOverTimer;
         playerRef = GameObject.Find("Player");
         StartCoroutine(FOVRoutine());
@@ -106,6 +114,17 @@ public class EnemyFOV : MonoBehaviour
     public void Update()
     {
         SpottingPlayer();
+
+        if(transform.position != previousPosition)
+        {
+            PlayWalkingSound();
+        }
+        else
+        {
+            StopWalkingSound();
+        }
+
+        previousPosition = transform.position;
     }
 
 
@@ -161,6 +180,29 @@ public class EnemyFOV : MonoBehaviour
         {
         audioSource.PlayOneShot(spottedSound);
         PlaySpotted = true;
+        }
+    }
+
+    void PlayWalkingSound()
+    {
+        if(isWalkingSound == false)
+        {
+
+            audioSource.loop = true;
+            audioSource.clip = walkSound;
+            audioSource.Play();
+            isWalkingSound = true;
+        }
+    }
+
+    void StopWalkingSound()
+    {
+        if(isWalkingSound == true)
+        {
+
+            audioSource.loop = false;
+            audioSource.Stop();
+            isWalkingSound = false;
         }
     }
 
