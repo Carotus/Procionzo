@@ -2469,6 +2469,14 @@ PrefabInstance:
       propertyPath: thisPanel
       value: 
       objectReference: {fileID: 1718852360}
+    - target: {fileID: 6367109048398652459, guid: ab1c418216c9ddb4892fe588b20ac0dd, type: 3}
+      propertyPath: m_Volume
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6826509386313404429, guid: ab1c418216c9ddb4892fe588b20ac0dd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7233403568194276552, guid: ab1c418216c9ddb4892fe588b20ac0dd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
