@@ -1,4 +1,6 @@
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -6,6 +8,8 @@ public class GameManager : MonoBehaviour
     public GameObject gameOverUI;
 
     public GameObject pauseUI;
+
+    public TextMeshProUGUI scoreText;
 
     [Header("Score")]
     public int CurrentScore;
@@ -26,6 +30,9 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+
+        scoreText.text = $"{CurrentScore}/{NeededScore}";
+
         if (Input.GetButtonDown("Pause") && !paused)
         {
             Debug.Log("Pause");
