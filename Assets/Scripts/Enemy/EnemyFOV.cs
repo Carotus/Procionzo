@@ -147,7 +147,7 @@ public class EnemyFOV : MonoBehaviour
         }
         else if (gameOverTimer < gameOverTimerMax)
         {
-            gameOverTimer = gameOverTimerMax;
+            gameOverTimer += Time.deltaTime;
             Debug.Log(gameOverTimer.ToString());
         }
     }

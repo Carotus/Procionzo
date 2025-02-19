@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
     public float SatietyTimer;
 
     public float staminaDepMult;
+
+    public float satDepMult;
     public float maxStamina;
     public float StaminaRegenSpeed;
     public LayerMask Wall;
@@ -34,6 +36,9 @@ public class PlayerMovement : MonoBehaviour
     public staminaBar staminabar;
     public GameObject canvas;
     public TextMeshProUGUI staminaText;
+
+    public bool satChanged;
+    public SatBar satBar;
 
     private GameManager gm;
     
@@ -115,12 +120,27 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
-        if (SatietyTimer > 0 || isEating)
+        if (SatietyTimer > 0) //|| isEating)
         {
-            SatietyTimer -= Time.deltaTime;
+            if(satChanged == false)
+            {
+                Debug.Log("Sat changed");
+                satBar.SetMaxSat((float)SatietyTimer);
+                satChanged = true;
+            }
+            else
+            {
+            satBar.SetCurrentSat((float)SatietyTimer);
+
+            if(SatietyTimer >= 0)
+            {
+            SatietyTimer -= satDepMult * Time.deltaTime;
+            }
+            }
         }
         else if(SatietyTimer <= 0)
         {
+            satChanged = false;
             currentStamina -= staminaDepMult * Time.deltaTime;
             staminabar.SetStamina((float)currentStamina);
         }
