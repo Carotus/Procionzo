@@ -266,7 +266,6 @@ MonoBehaviour:
   - rid: 7243032011836228301
   - rid: 7243032011836228302
   - rid: 7243032011836228489
-  - rid: 7243032169097200247
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -376,14 +375,6 @@ MonoBehaviour:
           m_Value1: 94511062416616615
         Name: Wait Timer
         m_Value: 5
-    - rid: 7243032169097200247
-      type: {class: 'BlackboardVariable`1[[UnityEngine.Audio.AudioResource, UnityEngine.AudioModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 2360837956365299415
-          m_Value1: 8301646412886576597
-        Name: Footsteps
-        m_Value: {fileID: 8300000, guid: 17d411bb2997b8744a3925c8e51e402e, type: 3}
 --- !u!114 &5251581001123439521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,6 +388,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRef: {fileID: 0}
+  spottedBar: {fileID: 0}
   EnemyGraph: {fileID: 3256246311284088007}
   viewRadius: 10
   viewAngle: 100
@@ -408,10 +400,14 @@ MonoBehaviour:
     m_Bits: 640
   Spotted: 0
   IsInVision: 0
-  gameOverTimer: 3
+  gameOverTimer: 0
+  gameOverTimerMax: 5
   audioSource: {fileID: 8723851827716949982}
   spottedSound: {fileID: 8300000, guid: ba14b0f7a29cc6d42b5112b3d61161ce, type: 3}
+  walkSound: {fileID: 8300000, guid: 17d411bb2997b8744a3925c8e51e402e, type: 3}
   PlaySpotted: 0
+  isWalkingSound: 0
+  previousPosition: {x: 0, y: 0, z: 0}
 --- !u!82 &8723851827716949982
 AudioSource:
   m_ObjectHideFlags: 0

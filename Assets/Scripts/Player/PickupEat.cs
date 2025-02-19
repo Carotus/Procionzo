@@ -16,6 +16,7 @@ public class PickupEat : MonoBehaviour
     public bool canEat;
 
     private bool isHoldingObject;
+    
 
     public float throwForce = 500f; 
     public float pickUpRange = 5f; 
@@ -179,7 +180,7 @@ public class PickupEat : MonoBehaviour
                 if(foodScript.foodHP > 0)
                 {
                     foodScript.foodHP -= Time.deltaTime;
-                    Debug.Log("foodHP: " + foodScript.foodHP);
+                    //Debug.Log("foodHP: " + foodScript.foodHP);
                 }
                 else if(foodScript.foodHP <= 0)
                 {
@@ -188,6 +189,7 @@ public class PickupEat : MonoBehaviour
                     pm.speed = currentSpeed;
                     pm.UpdateStamina();
                     canEat = false;
+                    pm.SatietyTimer = foodScript.Sat;
                     pm.maxStamina += foodScript.staminaIncrease;
                     pm.currentStamina = pm.maxStamina;
                     pm.SatietyTimer = foodScript.Sat;
