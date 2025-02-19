@@ -666,8 +666,8 @@ MonoBehaviour:
   holdPos: {fileID: 6746684601646460656}
   gm: {fileID: 0}
   canEat: 0
-  throwForce: 500
-  pickUpRange: 5
+  throwForce: 350
+  pickUpRange: 2
   heldObj: {fileID: 0}
   audioSource: {fileID: 2723730924911901092}
   isPlayingEat: 0
