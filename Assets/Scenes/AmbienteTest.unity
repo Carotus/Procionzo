@@ -797,8 +797,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0a758f275aef37e44be61cfaeadd4f7f, type: 3}
-  m_Resource: {fileID: 8300000, guid: 0a758f275aef37e44be61cfaeadd4f7f, type: 3}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2794,7 +2794,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2723730924911901092, guid: 07c19cc3d3036f340ba459183709053b, type: 3}
       propertyPath: m_PlayOnAwake
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2827966377334212610, guid: 07c19cc3d3036f340ba459183709053b, type: 3}
       propertyPath: m_Layer
@@ -2836,6 +2836,18 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3599172709560735063, guid: 07c19cc3d3036f340ba459183709053b, type: 3}
+      propertyPath: dropSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6fd05db7d1960714da761c507c8fb12f, type: 3}
+    - target: {fileID: 3599172709560735063, guid: 07c19cc3d3036f340ba459183709053b, type: 3}
+      propertyPath: throwSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6fd05db7d1960714da761c507c8fb12f, type: 3}
+    - target: {fileID: 3599172709560735063, guid: 07c19cc3d3036f340ba459183709053b, type: 3}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 6fd05db7d1960714da761c507c8fb12f, type: 3}
     - target: {fileID: 4078647762951559192, guid: 07c19cc3d3036f340ba459183709053b, type: 3}
       propertyPath: m_Name
       value: Player

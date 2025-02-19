@@ -13,7 +13,7 @@ public class Killbox : MonoBehaviour
 
             if (rigid != null)
             {
-                rigid.velocity = Vector3.zero; 
+                rigid.linearVelocity = Vector3.zero; 
                 rigid.angularVelocity = Vector3.zero; 
             }
 

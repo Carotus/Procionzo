@@ -672,9 +672,9 @@ MonoBehaviour:
   audioSource: {fileID: 2723730924911901092}
   isPlayingEat: 0
   eatingSound: {fileID: 8300000, guid: efdaea560a6b2ca4b906c4a4b85c63e8, type: 3}
-  pickupSound: {fileID: 0}
-  dropSound: {fileID: 0}
-  throwSound: {fileID: 0}
+  pickupSound: {fileID: 8300000, guid: 2185642d76cce594eb3e4cf1e471fce3, type: 3}
+  dropSound: {fileID: 8300000, guid: 2185642d76cce594eb3e4cf1e471fce3, type: 3}
+  throwSound: {fileID: 8300000, guid: 2185642d76cce594eb3e4cf1e471fce3, type: 3}
 --- !u!82 &2723730924911901092
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1006,7 +1006,7 @@ MonoBehaviour:
   isEating: 0
   SatietyTimer: 0
   staminaDepMult: 0.25
-  satDepMult: 0
+  satDepMult: 0.25
   maxStamina: 50
   StaminaRegenSpeed: 2
   Wall:
