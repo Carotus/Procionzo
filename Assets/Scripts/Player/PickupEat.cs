@@ -109,8 +109,6 @@ public class PickupEat : MonoBehaviour
             heldObjRb.transform.parent = holdPos.transform; //parent object to holdposition
             heldObj.layer = LayerNumber; //change the object layer to the holdLayer
             Physics.IgnoreCollision(heldObj.GetComponent<Collider>(), player.GetComponent<Collider>(), true);
-           // audioSource.clip = pickupSound;
-            //audioSource.Play();
             isHoldingObject = true;
         }
     }
@@ -121,8 +119,6 @@ public class PickupEat : MonoBehaviour
         heldObjRb.isKinematic = false;
         heldObj.transform.parent = null; 
         heldObj = null; 
-        //audioSource.clip = dropSound;
-        //audioSource.Play();
         isHoldingObject = false;
         StopEatSound();
         pm.speed = currentSpeed;
@@ -146,8 +142,6 @@ public class PickupEat : MonoBehaviour
         heldObjRb.isKinematic = false;
         heldObj.transform.parent = null;
         heldObjRb.AddForce(transform.forward * throwForce);
-        //audioSource.clip = throwSound;
-        //audioSource.Play();
         StopEatSound();
         heldObj = null;
         pm.speed = currentSpeed;

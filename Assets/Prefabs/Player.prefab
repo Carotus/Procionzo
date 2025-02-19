@@ -1006,7 +1006,7 @@ MonoBehaviour:
   isEating: 0
   SatietyTimer: 0
   staminaDepMult: 0.25
-  satDepMult: 0
+  satDepMult: 0.25
   maxStamina: 50
   StaminaRegenSpeed: 2
   Wall:
