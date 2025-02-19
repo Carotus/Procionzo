@@ -12,8 +12,29 @@ EditorBuildSettings:
     path: Assets/Scenes/LvTutorialF.unity
     guid: fbfa514691719bf47813e2378297a688
   - enabled: 1
+    path: Assets/Scenes/VictoryScreen(chiedo perdono per i miei peccati)/VictoryScreen.unity
+    guid: 9d01c6afc4ea22a47b8d852cae46d60e
+  - enabled: 1
+    path: Assets/Scenes/Livello_1_Iacopo.unity
+    guid: 20f500b59d36ff34e97ceafaf05fbcef
+  - enabled: 1
+    path: Assets/Scenes/VictoryScreen(chiedo perdono per i miei peccati)/VictoryScreen
+      1.unity
+    guid: 1b790350584c5054c8bc1783d5e8682f
+  - enabled: 1
+    path: Assets/Scenes/Livello_2_Iacopo.unity
+    guid: 78d5765e460f9b044b8eabcf0c7737a2
+  - enabled: 1
+    path: Assets/Scenes/VictoryScreen(chiedo perdono per i miei peccati)/VictoryScreen
+      2.unity
+    guid: 6c1abb120fa3390498f4ca3ae7144747
+  - enabled: 1
     path: Assets/Scenes/Lv1F.unity
     guid: 8a1988381d27e9c43b548677e664ffb7
+  - enabled: 1
+    path: Assets/Scenes/VictoryScreen(chiedo perdono per i miei peccati)/VictoryScreen
+      3.unity
+    guid: 636da7472637a674eb93999d50c0be18
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 99f9c9493070a9d4c979a8fec7c5a8d3, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

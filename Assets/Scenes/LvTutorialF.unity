@@ -20034,6 +20034,14 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4289397260177111967, guid: 07c19cc3d3036f340ba459183709053b, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4289397260177111967, guid: 07c19cc3d3036f340ba459183709053b, type: 3}
+      propertyPath: gravity
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4289397260177111967, guid: 07c19cc3d3036f340ba459183709053b, type: 3}
       propertyPath: satDepMult
       value: 1
       objectReference: {fileID: 0}

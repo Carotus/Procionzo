@@ -11,18 +11,10 @@ public class LevelManager : MonoBehaviour
 
     public GameObject thisPanel = null;
 
-    void Awake()
+    void Start()
     {
-        if (LSS == null)
-        {
-            LSS = GameObject.Find("PlayerCanvas");
-        }
-
-        if (thisPanel == null)
-        {
-            thisPanel = GameObject.Find("PauseMenu");
-        }
-
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void NextLevel()
