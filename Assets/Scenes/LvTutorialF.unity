@@ -18915,6 +18915,10 @@ PrefabInstance:
       propertyPath: viewDistance
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3196772061074436221, guid: f3155300a70b9c44b8e61f2cbd36caf9, type: 3}
+      propertyPath: m_Acceleration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4835312346437885066, guid: f3155300a70b9c44b8e61f2cbd36caf9, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -18982,6 +18986,10 @@ PrefabInstance:
     - target: {fileID: 5428867403056754371, guid: f3155300a70b9c44b8e61f2cbd36caf9, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6123814287381143661, guid: f3155300a70b9c44b8e61f2cbd36caf9, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8034313062349690563, guid: f3155300a70b9c44b8e61f2cbd36caf9, type: 3}
       propertyPath: m_Name
@@ -20055,6 +20063,10 @@ PrefabInstance:
     - target: {fileID: 4289397260177111967, guid: 07c19cc3d3036f340ba459183709053b, type: 3}
       propertyPath: gravity
       value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4289397260177111967, guid: 07c19cc3d3036f340ba459183709053b, type: 3}
+      propertyPath: maxStamina
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4289397260177111967, guid: 07c19cc3d3036f340ba459183709053b, type: 3}
       propertyPath: satDepMult

@@ -189,7 +189,7 @@ public class PickupEat : MonoBehaviour
                     pm.speed = currentSpeed;
                     pm.UpdateStamina();
                     canEat = false;
-                    pm.SatietyTimer += foodScript.Sat;
+                    pm.SatietyTimer = foodScript.Sat;
                     pm.maxStamina += foodScript.staminaIncrease;
                     pm.currentStamina = pm.maxStamina;
                     gm.CurrentScore += 1;

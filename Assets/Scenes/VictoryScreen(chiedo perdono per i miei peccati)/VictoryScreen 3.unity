@@ -464,9 +464,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2795363176406977946, guid: 9e8f398440edd6448b0a0de807ba33e2, type: 3}
+      propertyPath: LSS
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2923509008810744875, guid: 9e8f398440edd6448b0a0de807ba33e2, type: 3}
       propertyPath: m_text
-      value: YOU WON
+      value: YOU BEAT THE GAME
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923509008810744875, guid: 9e8f398440edd6448b0a0de807ba33e2, type: 3}
+      propertyPath: m_fontSize
+      value: 140
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923509008810744875, guid: 9e8f398440edd6448b0a0de807ba33e2, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 3070091294275000216, guid: 9e8f398440edd6448b0a0de807ba33e2, type: 3}
       propertyPath: m_Pivot.x
@@ -586,7 +598,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6227892438550559980, guid: 9e8f398440edd6448b0a0de807ba33e2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -400
+      value: -200
       objectReference: {fileID: 0}
     - target: {fileID: 6227892438550559980, guid: 9e8f398440edd6448b0a0de807ba33e2, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -664,6 +676,7 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 8880810083023924817, guid: 9e8f398440edd6448b0a0de807ba33e2, type: 3}
     - {fileID: 6287859988080903696, guid: 9e8f398440edd6448b0a0de807ba33e2, type: 3}
+    - {fileID: 5916275164458340551, guid: 9e8f398440edd6448b0a0de807ba33e2, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e8f398440edd6448b0a0de807ba33e2, type: 3}

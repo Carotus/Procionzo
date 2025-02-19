@@ -212,5 +212,14 @@ public class EnemyFOV : MonoBehaviour
         }
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Player"))
+        {
+            GameManager gm = FindAnyObjectByType<GameManager>();  
+            gm.LoseScreen();
+        }
+    }
+
     
 }
